@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>OUR UNIVERSE — عالمنا</title>
+<meta name="theme-color" content="#070b16">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="OUR UNIVERSE">
+<link id="mf" rel="manifest">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="118" fill="%23070b16"/><circle cx="256" cy="256" r="128" fill="%23f0c274"/><circle cx="192" cy="250" r="104" fill="%23070b16"/></svg>'>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marhey:wght@600;700&family=Alexandria:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#070b16;--pn:#0e1626;--pn2:#141f36;--ln:#233253;--ink:#f2ead8;--mu:#8b98b8;--gold:#f0c274;--rose:#e88a8a}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:'Alexandria',sans-serif;overflow:hidden;background-image:radial-gradient(1.4px 1.4px at 12% 22%,rgba(255,255,255,.2),transparent),radial-gradient(1px 1px at 78% 12%,rgba(255,255,255,.16),transparent),radial-gradient(1.6px 1.6px at 90% 74%,rgba(255,255,255,.13),transparent),radial-gradient(1px 1px at 35% 82%,rgba(255,255,255,.1),transparent)}
+[hidden]{display:none!important}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+input,textarea{font-family:inherit;color:var(--ink)}
+.en{font-family:'Marhey',cursive;letter-spacing:.12em}
+#app{height:100dvh;display:flex;flex-direction:column;max-width:520px;margin:0 auto;background:rgba(7,11,22,.75)}
+@media(min-width:560px){body{overflow:auto;padding:24px 0}#app{height:min(860px,calc(100dvh - 48px));border:1px solid var(--ln);border-radius:34px;overflow:hidden;box-shadow:0 40px 100px #000a}}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px 10px;border-bottom:1px solid var(--ln);flex:none}
+.brand{display:flex;gap:10px;align-items:center}
+.brand b{font-size:.9rem;color:var(--gold);display:block}
+.brand small{color:var(--mu);font-size:.68rem}
+.chip{display:flex;align-items:center;gap:6px;font-size:.74rem;color:var(--mu);border:1px solid var(--ln);border-radius:99px;padding:6px 11px;background:var(--pn);flex:none}
+.dot{width:8px;height:8px;border-radius:50%;background:#5a6785;flex:none}
+.dot.on{background:#8fce7a;animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 6px #8fce7a00}}
+#main{flex:1;overflow-y:auto;padding:14px 16px 24px}
+#main.chat{display:flex;flex-direction:column;overflow:hidden;padding:0}
+.card{background:var(--pn);border:1px solid var(--ln);border-radius:18px;padding:15px;margin-bottom:12px}
+.card h3{font-size:.95rem;margin-bottom:7px}
+.hint{color:var(--mu);font-size:.78rem;line-height:1.8}
+.scene-card{background:#05070f;border:1px solid var(--ln);border-radius:20px;overflow:hidden;margin-bottom:12px}
+.scene{display:block;width:100%;height:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:13px;padding:11px 18px;font-size:.9rem;font-weight:600;transition:transform .15s}
+.btn:active{transform:scale(.96)}
+.btn.p{background:var(--gold);color:#241a08}
+.btn.g{border:1px solid #2c3d63;color:var(--gold)}
+.btn.w{width:100%}
+.moods{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mood{display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 2px;border-radius:13px;border:1px solid var(--ln);background:var(--pn2);font-size:.64rem;color:var(--mu)}
+.mood i{font-style:normal;font-size:1.3rem}
+.mood.on{border-color:var(--gold);color:var(--ink)}
+.tinies{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tiny{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 2px;background:var(--pn2);border:1px solid var(--ln);border-radius:13px;font-size:.66rem;color:var(--mu)}
+.tiny i{font-style:normal;font-size:1.3rem}
+#tabs{display:flex;background:#0a101f;border-top:1px solid var(--ln);padding:8px 6px calc(9px + env(safe-area-inset-bottom));flex:none}
+#tabs button{flex:1;color:#5f6c8d;font-size:.68rem;padding:6px 0;position:relative}
+#tabs button.on{color:var(--gold)}
+#tabs button.on::after{content:'';position:absolute;bottom:1px;right:28%;left:28%;height:2.5px;border-radius:3px;background:var(--gold)}
+.badge{position:absolute;top:0;right:24%;width:7px;height:7px;border-radius:50%;background:var(--gold);opacity:0;font-style:normal}
+.badge.on{opacity:1;animation:ping 2s infinite}
+.cs{flex:1;overflow-y:auto;padding:14px 14px 6px;display:flex;flex-direction:column;gap:11px}
+.msg{display:flex;flex-direction:column;max-width:84%;animation:min .3s both}
+@keyframes min{from{opacity:0;transform:translateY(8px)}}
+.msg.you{align-self:flex-start;align-items:flex-start}
+.msg.him{align-self:flex-end;align-items:flex-end}
+.bub{background:var(--pn2);border:1px solid #2c3d63;border-radius:17px 17px 17px 5px;padding:8px 13px;font-size:.87rem;line-height:1.8;max-width:100%;word-break:break-word}
+.msg.you .bub{background:#f0c2741c;border-color:#f0c27455;border-radius:17px 17px 5px 17px}
+.msg time{font-size:.6rem;color:#5f6c8d;margin:3px 5px 0}
+.bub.voice{direction:ltr;min-width:215px}
+.bub.voice audio{width:100%;height:36px}
+.bub.voice small{display:block;color:var(--mu);font-size:.66rem;margin-top:4px;direction:rtl}
+.bub.photo{padding:5px}
+.bub.photo img{display:block;max-width:225px;max-height:300px;border-radius:12px}
+.bub.photo small{display:block;color:var(--mu);font-size:.66rem;margin-top:4px}
+.nwmsg{background:#e88a8a14;border:1px solid #e88a8a55;border-radius:17px 17px 5px 17px;padding:9px 14px;text-align:center;font-size:.85rem}
+.nwmsg i{font-style:normal;font-size:1.3rem;display:block}
+.msg .tools{display:flex;gap:6px;margin-top:4px}
+.msg .tools button{font-size:.66rem;color:var(--mu);border:1px solid var(--ln);border-radius:9px;padding:3px 9px;background:var(--pn)}
+.msg .tools button:active{color:var(--gold);border-color:var(--gold)}
+.comp{flex:none;border-top:1px solid var(--ln);background:#0a101f;padding:8px 10px calc(9px + env(safe-area-inset-bottom))}
+.nwrow{display:flex;gap:6px;overflow-x:auto;padding-bottom:7px;scrollbar-width:none}
+.nwrow::-webkit-scrollbar{display:none}
+.nwb{flex:none;display:flex;align-items:center;gap:5px;background:var(--pn2);border:1px solid var(--ln);border-radius:99px;padding:6px 11px;font-size:.7rem;color:var(--mu);white-space:nowrap}
+.nwb i{font-style:normal}
+.tags{display:flex;gap:6px;margin-bottom:7px;flex-wrap:wrap;align-items:center}
+.tg{font-size:.66rem;color:var(--mu);border:1px solid var(--ln);border-radius:99px;padding:4px 10px}
+.tg.on{border-color:var(--gold);color:var(--gold)}
+.inrow{display:flex;gap:7px;align-items:center}
+#ci{flex:1;background:var(--pn2);border:1px solid #2c3d63;border-radius:13px;padding:10px 14px;font-size:.88rem;outline:none;min-width:0}
+.mic{width:42px;height:42px;border-radius:12px;border:1px solid #2c3d63;color:var(--gold);font-size:1.05rem;flex:none}
+.mic.rec{border-color:var(--rose);color:var(--rose);animation:bl 1s infinite}
+@keyframes bl{50%{opacity:.4}}
+.sendb{width:42px;height:42px;border-radius:12px;background:var(--gold);color:#241a08;flex:none;display:flex;align-items:center;justify-content:center}
+.recbar{flex:1;display:flex;align-items:center;gap:8px;background:#e88a8a14;border:1px solid #e88a8a66;border-radius:13px;padding:10px 13px;font-size:.78rem;color:var(--rose)}
+.td{width:7px;height:7px;border-radius:50%;background:#8b98b8;animation:jp 1s infinite;display:inline-block}
+@keyframes jp{30%{transform:translateY(-5px)}}
+.bar{height:8px;background:#0a1120;border:1px solid var(--ln);border-radius:8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--gold);transition:width .7s}
+.threadbox{display:flex;gap:10px;align-items:center}
+.sw{width:13px;height:13px;border-radius:50%;flex:none;box-shadow:0 0 10px 2px currentColor}
+.dream{display:flex;align-items:center;gap:11px;background:var(--pn2);border:1px solid var(--ln);border-radius:16px;padding:11px 13px;margin-top:8px}
+.dream b{font-size:.85rem;display:block}
+.dream small{color:var(--mu);font-size:.7rem;display:block;margin-top:2px;max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dream .go{margin-inline-start:auto;flex:none}
+.syncbtn{width:100%;padding:16px;border-radius:16px;border:1px solid var(--ln);background:var(--pn2);display:flex;align-items:center;gap:12px;margin-bottom:10px;text-align:right}
+.syncbtn:active{transform:scale(.97)}
+.syncbtn i{font-style:normal;font-size:1.6rem;flex:none}
+.syncbtn b{display:block;font-size:.9rem}
+.syncbtn small{color:var(--mu);font-size:.7rem}
+.syncbox{text-align:center}
+.syncbox .big{font-size:3rem;display:block;margin-bottom:4px}
+.sync-status{display:flex;justify-content:center;gap:10px;margin:14px 0;font-size:.8rem;flex-wrap:wrap}
+.sync-status span{background:var(--pn2);border:1px solid var(--ln);border-radius:99px;padding:7px 14px;color:var(--mu)}
+.sync-status span.ok{border-color:#8fce7a;color:#a8d8a0}
+.touchpad{width:170px;height:170px;margin:20px auto;border-radius:50%;border:2px dashed #2c3d63;display:flex;align-items:center;justify-content:center;color:var(--mu);font-size:.82rem;transition:.25s;touch-action:none;user-select:none}
+.touchpad.hold{border-color:var(--gold);color:var(--gold);box-shadow:inset 0 0 40px #f0c27422,0 0 30px #f0c27422;transform:scale(.96)}
+.colors{display:flex;gap:13px;justify-content:center;margin:18px 0;flex-wrap:wrap}
+.csw{width:44px;height:44px;border-radius:50%;border:3px solid transparent}
+.csw.sel{border-color:#fff}
+.result{font-size:2.6rem;animation:pi .6s cubic-bezier(.2,1.4,.4,1) both;display:block}
+#invitebar{position:fixed;top:12px;left:50%;transform:translate(-50%,-140%);z-index:95;display:flex;align-items:center;gap:10px;background:#1a2440;border:1px solid #3a4c7a;border-radius:16px;padding:10px 12px;box-shadow:0 16px 40px #000b;transition:transform .5s cubic-bezier(.2,1.2,.4,1);max-width:92vw}
+#invitebar.in{transform:translate(-50%,0)}
+#invitebar i{font-style:normal;font-size:1.3rem;flex:none}
+#invitebar span{font-size:.78rem;flex:1}
+#invitebar .btn{padding:8px 14px;font-size:.78rem;flex:none}
+#invitebar .x{color:var(--mu);font-size:1.1rem;padding:4px;flex:none}
+#toasts{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:90;display:flex;flex-direction:column;gap:7px;width:min(92vw,400px);pointer-events:none}
+.toast{display:flex;gap:10px;align-items:center;background:#101a30f2;border:1px solid #2a3a5e;border-radius:14px;padding:10px 14px;font-size:.8rem;line-height:1.6;animation:tin .45s both}
+.toast i{font-style:normal;font-size:1.25rem;flex:none}
+.toast.out{opacity:0;transition:.4s}
+@keyframes tin{from{transform:translateY(-16px);opacity:0}}
+#modals:empty{display:none}
+#modals{position:fixed;inset:0;z-index:80;display:flex;align-items:flex-end;justify-content:center;background:#04060cd9;backdrop-filter:blur(6px)}
+.sheet{background:#0d1526;border:1px solid #26355a;border-radius:24px 24px 0 0;padding:22px 18px 32px;width:min(100%,450px);max-height:88dvh;overflow-y:auto;animation:up .45s both}
+@keyframes up{from{transform:translateY(60px);opacity:0}}
+.sheet h3{margin-bottom:5px}
+.sheet textarea,.sheet input{width:100%;background:var(--pn2);border:1px solid #2c3d63;border-radius:13px;padding:11px 13px;font-size:.88rem;outline:none;margin:7px 0 12px;line-height:1.8}
+.sheet input:focus,.sheet textarea:focus{border-color:var(--gold)}
+.err{color:var(--rose);font-size:.72rem;min-height:1.2em}
+.picknames{display:flex;gap:10px;justify-content:center;margin:14px 0}
+.pname{flex:1;max-width:170px;padding:20px 8px;border-radius:15px;border:1px solid var(--ln);background:var(--pn2);font-size:1rem}
+.pname:active{transform:scale(.95)}
+.back{display:block;margin:14px auto 0;color:var(--mu);font-size:.76rem}
+.rulesbox{direction:ltr;text-align:left;font-family:monospace;font-size:.64rem;background:var(--pn2);border:1px dashed #2c3d63;border-radius:10px;padding:10px;white-space:pre-wrap;color:var(--mu);margin:8px 0 12px;user-select:all}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:70;overflow:hidden}
+.shoot{position:absolute;width:90px;height:2px;background:linear-gradient(90deg,transparent,#ffd98a);animation:shoot 1.25s ease-out both}
+@keyframes shoot{from{transform:translate(0,0) rotate(-24deg);opacity:1}to{transform:translate(340px,-170px) rotate(-24deg);opacity:0}}
+.moonburst{position:absolute;left:50%;top:38%;width:14px;height:14px;margin:-7px;border-radius:50%;background:#f3ecd8;box-shadow:0 0 44px 20px #ffe9b066;animation:burst 2.1s ease-out both}
+@keyframes burst{0%{transform:scale(.2);opacity:0}25%{opacity:1}100%{transform:scale(10);opacity:0}}
+#splash{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .6s}
+#splash.bye{opacity:0;pointer-events:none}
+#splash .in{text-align:center;animation:tin 1s .2s both}
+#splash h1{font-size:1.6rem;color:var(--gold);margin-top:20px}
+#splash small{color:var(--mu);font-size:.75rem;display:block;margin-top:6px}
+#ob{position:fixed;inset:0;z-index:60;overflow-y:auto;background:var(--bg);padding:40px 22px}
+.obw{max-width:380px;margin:auto;text-align:center}
+.obw>h1{font-size:1.7rem;color:var(--gold);margin:18px 0 6px}
+.obw>p{color:var(--mu);font-size:.83rem;line-height:2;margin-bottom:22px}
+.tw{animation:twk 3s infinite}
+@keyframes twk{0%,100%{opacity:.15}50%{opacity:1}}
+.drop{animation:fall 1s linear infinite}
+@keyframes fall{to{transform:translateY(400px)}}
+.flo{animation:flo 6s linear infinite}
+@keyframes flo{0%{transform:translateY(0);opacity:0}12%{opacity:.85}100%{transform:translateY(-130px);opacity:0}}
+.comet{animation:cf 4.5s ease-in infinite;opacity:0}
+@keyframes cf{0%{transform:translate(-60px,30px);opacity:0}6%{opacity:1}25%{transform:translate(420px,-30px);opacity:0}100%{opacity:0}}
+.bolt{opacity:0;animation:blt 6s infinite}
+@keyframes blt{0%,88%,100%{opacity:0}89%,90%,92%{opacity:1}91%{opacity:.5}}
+.lan{animation:pg 3.2s infinite}
+@keyframes pg{50%{opacity:.5}}
+.breathe{animation:brz 3.6s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes brz{50%{transform:scaleY(1.05)}}
+.zzz circle{animation:flo 3.4s linear infinite}
+.thread{animation:dm 2.4s linear infinite}
+@keyframes dm{to{stroke-dashoffset:-34}}
+.popin{animation:pi .7s cubic-bezier(.2,1.4,.4,1) both;transform-box:fill-box;transform-origin:center}
+@keyframes pi{from{transform:scale(0)}}
+</style>
+</head>
+<body>
+
+<div id="splash"><div class="in">
+<svg viewBox="0 0 512 512" width="120" height="120"><rect width="512" height="512" rx="118" fill="#070b16"/><circle cx="256" cy="256" r="150" fill="#f0c274" opacity=".07"/><circle cx="256" cy="256" r="128" fill="#f0c274"/><circle cx="192" cy="250" r="104" fill="#070b16"/><circle class="tw" cx="112" cy="132" r="7" fill="#f2ead8"/><circle class="tw" cx="398" cy="118" r="6" fill="#f0c274" style="animation-delay:1.1s"/><circle class="tw" cx="424" cy="252" r="5" fill="#f2ead8" style="animation-delay:.6s"/><circle class="tw" cx="98" cy="316" r="5" fill="#f0c274" style="animation-delay:1.7s"/><path class="tw" d="M196 202l6 16 16 6-16 6-6 16-6-16-16-6 16-6z" fill="#f0c274" style="animation-delay:.9s"/></svg>
+<h1 class="en">OUR UNIVERSE</h1><small>عالمنا · L8</small>
+</div></div>
+
+<script>
+setTimeout(function(){if(!window.__ok){var s=document.getElementById('splash');if(s)s.innerHTML='<div style="padding:28px;text-align:center;font-size:.85rem;line-height:2.1">⚠️ الملف وصل ناقص<br>امسحي index.html والصقيه تاني كامل<br>وامسحي دوس Commit changes الأخضر تحت خالص</div>'}},9000);
+</script>
+
+<div id="app" hidden>
+<header id="top"></header>
+<main id="main"></main>
+<nav id="tabs">
+<button data-go="home">🌍 عالمي</button>
+<button data-go="partner">🪐 عالمه</button>
+<button data-go="world">🌉 عالمنا</button>
+<button data-go="chat">💬 الحديث<i class="badge" id="bc"></i></button>
+</nav>
+</div>
+
+<div id="ob" hidden></div>
+<div id="invitebar"></div>
+<div id="toasts"></div>
+<div id="modals"></div>
+<div id="fx"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+'use strict';
+/* ═══ الإعدادات ═══ */
+const NAMES={A:'Menna',B:'Mohamed'};
+const DB_URL='https://our-universe-590e1-default-rtdb.firebaseio.com';
+const CODE='ny-7k3v9x';
+/* ═════════════════════════════════ */
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const ago=t=>{const m=Math.floor((Date.now()-t)/6e4);if(m<1)return'الآن';if(m<60)return'منذ '+m+' دقيقة';const h=Math.floor(m/60);return h<24?'منذ '+h+' ساعة':'منذ '+Math.floor(h/24)+' يوم'};
+const fmt=t=>new Date(t).toLocaleTimeString('ar-EG',{hour:'numeric',minute:'2-digit'});
+
+let MODE='net',db=null,mySlot=null,FEM=true,netOn=false,fbReady=false,typing=false,rec=null,view='home',draft='',tag=null,p2Joined=false,notifOK=false,photoPick=null;
+const seen=new Set(),finished=new Set();
+let dev=localStorage.getItem('dev');if(!dev){dev='d'+Math.random().toString(36).slice(2,9);localStorage.setItem('dev',dev)}
+const oslot=()=>mySlot==='A'?'B':'A';
+const w=(f,m)=>FEM?f:m;
+const mL=k=>MOODS[k][FEM?'l':'m'];
+const pL=k=>MOODS[k][FEM?'m':'l'];
+const P=p=>'unis/'+CODE+'/'+p;
+const SVTS=()=>{try{return firebase.database.ServerValue.TIMESTAMP}catch(e){return Date.now()}};
+
+const MOODS={
+happy:{e:'😊',l:'مبسوطة',m:'مبسوط',d:'الشمس طالعة والتلال دافية ☀️',sky:['#47739c','#1c3153'],h:['#2f6b46','#1f4f33','#163a26'],orb:'sun',g:'#ffd98a',fam:'warm',st:16},
+peaceful:{e:'🤍',l:'مرتاحة',m:'مرتاح',d:'ليل صافي وقمر كبير ناعم',sky:['#15223f','#070d1c'],h:['#1d2f4e','#14223b','#0d182a'],orb:'moon',g:'#e9e2cc',fam:'warm',st:30},
+loving:{e:'❤️',l:'حب',m:'حب',d:'قلوب مليّانة السما ❤️',sky:['#3b2033','#190d17'],h:['#33203a','#241529','#170f1c'],orb:'pink',g:'#f3b8c0',fam:'warm',fx:'hearts',st:22},
+excited:{e:'✨',l:'متحمسة',m:'متحمس',d:'شهب بتلمع في كل حتة',sky:['#2b4462','#101a2b'],h:['#22505a','#163741','#0f262e'],orb:'star',g:'#ffe9b0',fam:'warm',fx:'spark',st:34},
+emotional:{e:'🥹',l:'متأثرة',m:'متأثر',d:'مطر خفيف تحت قمر وردي',sky:['#3a2540','#190f20'],h:['#2c1e3c','#1e142a','#140d1b'],orb:'cres',g:'#e8b0c0',fam:'cold',fx:'rain',st:18},
+drained:{e:'😴',l:'منهكة',m:'منهك',d:'ليل عميق وقمر باهت — العالم نفسه تعبان',sky:['#0c1122','#04060e'],h:['#171d33','#101425','#0a0d19'],orb:'dim',g:'#8f98b8',fam:'cold',st:10},
+overwhelmed:{e:'🫠',l:'مرهقة جدًا',m:'مرهق جدًا',d:'عاصفة والبرق بيومض ⛈️',sky:['#20293b','#090d16'],h:['#1a2333','#121826','#0c1019'],orb:null,g:'#9ab0d0',fam:'cold',fx:'storm',st:8},
+annoyed:{e:'😡',l:'متضايقة',m:'متضايق',d:'بركان صغير بيدخّن 🌋',sky:['#47201c','#1a0b09'],h:['#3a1c17','#291110','#190a09'],orb:null,g:'#ff9a70',fam:'cold',fx:'volc',st:6}};
+const TINY=[
+{k:'flower',i:'🌸',me:'بفكر فيك',him:'بفكر فيكي'},
+{k:'sun',i:'☀️',me:'يومك يبقى أحسن',him:'يومك يبقى أحلى'},
+{k:'hug',i:'🫂',me:'تعالى هنا',him:'تعالي هنا'},
+{k:'letter',i:'💌',me:'رسالة من الخيال',him:'رسالة من الخيال'},
+{k:'star',i:'⭐',me:'فخورة بيك',him:'فخور بيكي'},
+{k:'song',i:'🎵',me:'أغنية ليك',him:'أغنية ليكِ'}];
+const NW=[
+{k:'here',i:'🫶',l:'أنا هنا',s:'🫶 أنا هنا'},
+{k:'hug',i:'🫂',l:'محتاج/ة حضن',s:'🫂 تعالى هنا',sm:'🫂 تعالي هنا'},
+{k:'night',i:'🌙',l:'تصبح على خير',s:'🌙 تصبح على خير'},
+{k:'morning',i:'☀️',l:'صباح الخير',s:'☀️ صباح الخير'},
+{k:'need',i:'🥺',l:'محتاج/ةك',s:'🥺 محتاجاك',sm:'🥺 محتاجاكِ'},
+{k:'quiet',i:'🤍',l:'تمام بس ساكت/ة',s:'🤍 كويسة بس ساكتة',sm:'🤍 كويس بس ساكت'}];
+const TAGS={comfort:{i:'🫂',l:'محتاجة احتواء'},happy:{i:'😊',l:'مبسوطة'},meh:{i:'😐',l:'زهقانة شوية'}};
+const ACTF=['بتتفرج على النجوم','قاعدة تذاكر','بتسمع أغاني هادية','بتفكر في التاني'];
+const ACTM=['بيتفرج على النجوم','قاعد يذاكر','بيسمع أغاني هادية','بيفكر في التاني','بيشوف الجسر بينكم'];
+const gi=k=>({flower:'🌸',sun:'☀️',hug:'🫂',letter:'💌',star:'⭐',song:'🎵',heart:'❤️',notes:'🎵',sunpop:'☀️',glow:'✨'})[k]||'🎁';
+const SYNCN={moon:{i:'🌙',t:'شوفوا القمر',d:'في نفس اللحظة بالظبط… لما تحسّوا إنكم جاهزين'},color:{i:'🎨',t:'اختاروا نفس اللون',d:'اختاروا في نفس الوقت… وشوفوا قلوبكم'},touch:{i:'👆',t:'لمسة في نفس اللحظة',d:'اضغطوا على الدايرة واستمروا ضاغطين مع بعض'}};
+const CNAMES={'#e88a8a':'الوردي','#f0c274':'الدهبي','#a8d8a0':'الأخضر','#7ec8c3':'الفيروزي','#a07ad4':'البنفسجي'};
+const COLORS=['#e88a8a','#f0c274','#a8d8a0','#7ec8c3','#a07ad4'];
+const DREAM_SPOTS=[[70,70],[330,60],[200,42],[130,100],[290,105]];
+
+const KEY='uni-l1';
+const DEF=()=>({setup:false,you:{name:'',mood:'peaceful',act:''},p2:{name:'',mood:'happy',online:false,act:'…'},day:Date.now(),bridge:40,gIn:[],gOut:[],chat:[],dreams:[],lastIn:null,lastOut:null,tiny:0,msgs:0,syncs:0});
+let S;try{S=Object.assign(DEF(),JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){S=DEF()}
+/* حفظ ذكي: لو المساحة خلصت بنمسح الصور والصوتيات القديمة ونحاول تاني */
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){
+ try{
+  const c=JSON.parse(JSON.stringify(S));
+  let keptP=0,keptA=0;
+  for(let i=c.chat.length-1;i>=0;i--){const m=c.chat[i];
+   if(m.photo){if(keptP<5)keptP++;else m.photo=null}
+   if(m.audio){if(keptA<5)keptA++;else m.audio=null}}
+  try{localStorage.setItem(KEY,JSON.stringify(c));return}catch(e2){}
+  const c2=JSON.parse(JSON.stringify(S));c2.chat=c2.chat.slice(-40);
+  c2.chat.forEach(m=>{m.audio=null;m.photo=null});
+  try{localStorage.setItem(KEY,JSON.stringify(c2))}catch(e3){}
+ }catch(e2){}}};
+const dayN=()=>Math.max(1,Math.floor((Date.now()-S.day)/864e5)+1);
+const warm=k=>k==='happy'||k==='loving'||k==='excited'||k==='peaceful';
+function threadInfo(){const a=warm(S.you.mood),b=warm(S.p2.mood);
+if(a&&b)return{c:'#f0c274',t:'الخيط دهبي — إحساسكم على نفس الموجة'};
+if(!a&&!b)return{c:'#7ea3d8',t:'الخيط أزرق هادي — ساكتين بس شايلين بعض'};
+return{c:'#a07ad4',t:'الخيط بنفسجي — توازن إحساسكم المختلف'}}
+
+let uid=0;
+const hash=s=>{let h=9;for(const c of s)h=Math.imul(h^c.charCodeAt(0),387420489)>>>0;return h};
+function stars(seed,n){let a=hash(seed),s='';
+for(let i=0;i<n;i++){a=(a*1664525+1013904223)>>>0;s+='<circle class="tw" cx="'+((a%4000)/10).toFixed(0)+'" cy="'+((a%2100)/10).toFixed(0)+'" r="'+(0.6+(a%100)/100).toFixed(1)+'" fill="#fff" style="animation-delay:'+((a%40)/10).toFixed(1)+'s"/>'}return s}
+const hills=m=>'<path d="M0 268 Q70 232 140 260 T280 254 T400 270 L400 340 0 340Z" fill="'+m.h[0]+'"/><path d="M0 292 Q100 262 200 290 T400 294 L400 340 0 340Z" fill="'+m.h[1]+'"/><path d="M0 316 Q130 294 260 314 T400 318 L400 340 0 340Z" fill="'+m.h[2]+'"/>';
+const star4=(x,y)=>'<path class="tw" transform="translate('+x+','+y+')" d="M0 -4 L1.1 -1.1 4 0 1.1 1.1 0 4 -1.1 1.1 -4 0 -1.1 -1.1Z" fill="#ffe9b0"/>';
+function cr(kind,sleep){const C=kind==='y'?['#e88a8a','#f2b3b3']:['#7ec8c3','#b2e2de'];
+if(sleep)return '<g><ellipse rx="11" ry="7" fill="'+C[0]+'"/><circle cx="10" cy="-3" r="5.5" fill="'+C[1]+'"/><path d="M8.5 -4 q1 -1 2 0 M12 -4 q1 -1 2 0" stroke="#22303f" stroke-width=".9" fill="none"/><g class="zzz" fill="#f2ead8"><circle cx="19" cy="-11" r="1"/><circle cx="25" cy="-17" r="1.4"/><circle cx="31" cy="-23" r="1.8"/></g></g>';
+return '<g class="breathe"><ellipse rx="8.5" ry="11" fill="'+C[0]+'"/><circle cy="-16" r="7" fill="'+C[1]+'"/><circle cx="-2.6" cy="-17" r="1.1" fill="#22303f"/><circle cx="2.6" cy="-17" r="1.1" fill="#22303f"/><path d="M-2.4 -13.6 Q0 -11.8 2.4 -13.6" stroke="#22303f" stroke-width=".9" fill="none"/></g>'}
+function orb(m,id){const G='<circle cx="308" cy="84" r="56" fill="url(#g'+id+')"/>';
+if(m.orb==='sun')return '<g>'+G+'<circle cx="308" cy="84" r="22" fill="#ffdd8f"/><circle cx="308" cy="84" r="16" fill="#ffe9b0"/></g>';
+if(m.orb==='moon')return '<g>'+G+'<circle cx="300" cy="88" r="32" fill="#f3ecd8"/><circle cx="290" cy="80" r="5" fill="#ddd2b4" opacity=".5"/><circle cx="308" cy="96" r="4" fill="#ddd2b4" opacity=".5"/></g>';
+if(m.orb==='star')return '<g>'+G+'<path class="tw" d="M330 56 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z" fill="#ffe9b0"/></g>';
+if(m.orb){const c=m.orb==='pink'?'#f3c3cd':m.orb==='cres'?'#e8b0c0':'#d9d6c8';const op=m.orb==='dim'?.5:1;
+return '<g opacity="'+op+'">'+G+'<defs><mask id="mk'+id+'"><rect x="258" y="30" width="104" height="104" fill="#fff"/><circle cx="296" cy="72" r="20" fill="#000"/></mask></defs><circle cx="308" cy="82" r="26" fill="'+c+'" mask="url(#mk'+id+')"/></g>'}
+return ''}
+function fx(m){const k=m.fx;if(!k)return '';
+if(k==='hearts')return [70,160,260,330].map((x,i)=>'<g transform="translate('+x+',195)"><g class="flo" style="animation-delay:'+(i*1.4)+'s"><path d="M0 3 C0 0 -3 -1.5 -4.5 .5 C-6 2.5 -4 5.5 0 8 C4 5.5 6 2.5 4.5 .5 C3 -1.5 0 0 0 3Z" fill="#e88a8a"/></g></g>').join('');
+if(k==='spark')return [0,1,2].map(i=>'<g class="comet" style="animation-delay:'+(i*2)+'s"><line x1="70" y1="30" x2="130" y2="56" stroke="#ffe9b0" stroke-width="2"/><circle cx="70" cy="30" r="3" fill="#ffe9b0"/></g>').join('')+[[70,60],[180,40],[300,100],[120,120],[340,70]].map(p=>star4(p[0],p[1])).join('');
+if(k==='rain')return Array.from({length:12},(_,i)=>'<line class="drop" x1="'+(20+i*32)+'" y1="-30" x2="'+(17+i*32)+'" y2="0" stroke="#e8c8e8" stroke-opacity=".35" stroke-width="1.6" style="animation-delay:'+((i%10)*.12)+'s"/>').join('');
+if(k==='storm')return '<ellipse cx="110" cy="60" rx="56" ry="17" fill="#0a0f1c"/><ellipse cx="250" cy="46" rx="62" ry="19" fill="#0b101f"/><polyline class="bolt" points="238,70 224,108 238,104 226,142" stroke="#ffe9a8" stroke-width="2.5" fill="none"/>'+Array.from({length:18},(_,i)=>'<line class="drop" x1="'+(15+i*22)+'" y1="-30" x2="'+(12+i*22)+'" y2="0" stroke="#9ab6d8" stroke-opacity=".4" stroke-width="1.6" style="animation-delay:'+((i%9)*.13)+'s"/>').join('');
+if(k==='volc')return '<path d="M40 300 L95 216 L150 300Z" fill="#2b1210"/><ellipse cx="95" cy="228" rx="9" ry="3" fill="#ff7a4d"/><circle class="lan" cx="93" cy="222" r="2" fill="#ff9a5f"/>';
+return ''}
+const SPOTS=[[40,278],[80,294],[122,272],[162,300],[205,286],[250,296],[296,278],[340,292],[366,308],[18,310],[232,312]];
+function giftMark(g,i){const p=SPOTS[i%11],fr=Date.now()-g.t<15000?' popin':'',tr='translate('+p[0]+','+p[1]+')';
+if(g.kind==='flower')return '<g transform="'+tr+'"><g class="popin'+fr+'"><line y2="-8" stroke="#3f6b4a" stroke-width="1.4"/><circle cy="-10" r="3" fill="#e88a8a"/><circle cy="-13" r="2.2" fill="#f0c274"/></g></g>';
+if(g.kind==='star')return '<g transform="'+tr+'"><g class="popin'+fr+'">'+star4(0,-8)+'</g></g>';
+if(g.kind==='heart')return '<g transform="'+tr+'"><g class="flo"><path d="M0 3 C0 0 -3 -1.5 -4.5 .5 C-6 2.5 -4 5.5 0 8 C4 5.5 6 2.5 4.5 .5 C3 -1.5 0 0 0 3Z" fill="#e88a8a"/></g></g>';
+if(g.kind==='notes')return '<g transform="'+tr+'"><g class="flo"><circle cy="-4" r="2" fill="#f2ead8"/><rect x="1.5" y="-11" width="1.2" height="7" fill="#f2ead8"/></g></g>';
+if(g.kind==='sunpop')return '<g transform="translate('+p[0]+','+(p[1]-10)+')"><g class="popin'+fr+'"><circle r="5.5" fill="#ffdd8f"/></g></g>';
+if(g.kind==='letter')return '<g transform="'+tr+'"><g class="popin'+fr+'"><rect x="-5" y="-5" width="10" height="7" rx="1" fill="#f2ead8"/></g></g>';
+if(g.kind==='hug')return '<g transform="'+tr+'"><g class="popin'+fr+'"><circle cx="-4" cy="-8" r="4" fill="#e88a8a"/><circle cx="4" cy="-8" r="4" fill="#7ec8c3"/></g></g>';
+return ''}
+function scene(who){const me=who==='you';const m=MOODS[me?S.you.mood:S.p2.mood];const id=++uid;
+let av='<g transform="translate(58,266)">'+cr('y')+'</g>';
+if(me){if(S.p2.online)av+='<g transform="translate(322,266)">'+cr('h')+'</g>'}
+else av='<g transform="translate(72,266)">'+cr('h',!S.p2.online)+'</g><g transform="translate(330,268)">'+cr('y')+'</g>';
+const gifts=(me?S.gIn:S.gOut).slice(-11).map((g,i)=>giftMark(g,i)).join('');
+return '<svg class="scene" viewBox="0 0 400 340" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="s'+id+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+m.sky[0]+'"/><stop offset="1" stop-color="'+m.sky[1]+'"/></linearGradient><radialGradient id="g'+id+'"><stop offset="0" stop-color="'+m.g+'" stop-opacity=".5"/><stop offset="1" stop-color="'+m.g+'" stop-opacity="0"/></radialGradient></defs><rect width="400" height="340" fill="url(#s'+id+')"/>'+stars(who+m.sky[0],m.st)+orb(m,id)+fx(m)+hills(m)+gifts+av+'</svg>'}
+function mini(mood,side){const m=MOODS[mood]||MOODS.peaceful,L=side==='L';const x0=L?0:288,x1=L?112:400,ox=L?56:344;
+let o='';if(m.orb==='sun')o='<circle cx="'+ox+'" cy="116" r="20" fill="#ffdd8f"/>';else if(m.orb)o='<circle cx="'+ox+'" cy="114" r="11" fill="'+(m.orb==='pink'?'#f3c3cd':'#f3ecd8')+'"/>';else o='<ellipse cx="'+ox+'" cy="112" rx="20" ry="6" fill="#0a0f1c"/>';
+return '<rect x="'+x0+'" y="40" width="114" height="140" fill="'+m.sky[0]+'"/><rect x="'+x0+'" y="180" width="114" height="190" fill="'+m.sky[1]+'"/><circle class="tw" cx="'+(ox-32)+'" cy="80" r="1.4" fill="#fff"/><circle class="tw" cx="'+(ox+12)+'" cy="62" r="1.2" fill="#fff" style="animation-delay:1s"/>'+o+'<path d="M'+x0+' 306 Q'+ox+' 282 '+x1+' 308 L'+x1+' 375 '+x0+' 375Z" fill="'+m.h[0]+'"/><path d="M'+x0+' 322 Q'+ox+' 300 '+x1+' 324 L'+x1+' 375 '+x0+' 375Z" fill="'+m.h[1]+'"/>'}
+function dreamIsles(){
+if(!S.dreams||!S.dreams.length)return '';
+return S.dreams.slice(0,5).map((d,i)=>{
+const p=DREAM_SPOTS[i%5];
+const r=hash(d.name+d.t)%360;
+const big=d.done;
+const fr=Date.now()-(d.t||0)<15000?' popin':'';
+return '<g transform="translate('+p[0]+','+p[1]+')"><g class="'+fr.trim()+'" transform="rotate('+r+' 0 6)"><path d="M-16 7 Q-19 -4 -8 -7 Q2 -11 10 -6 Q18 -2 16 6 Q7 11 -5 9 Z" fill="'+(big?'#2a4a3a':'#2b3654')+'"/><path d="M-16 7 Q-4 13 16 6" fill="'+(big?'#1f382c':'#1f2942')+'"/>'+(big?'<path class="tw" d="M0 -14 l1.5 4 4 1.5 -4 1.5 -1.5 4 -1.5 -4 -4 -1.5 4 -1.5z" fill="#a8d8a0"/>':star4(0,-14))+'</g></g>'}).join('')}
+function scene2(){const id=++uid,p=S.bridge/100,ti=threadInfo();
+let posts='';for(let i=0;i<=12;i++){const t=i/12,u=1-t;const x=u*u*296+2*u*t*200+t*t*104,y=u*u*206+2*u*t*154+t*t*206;posts+='<line x1="'+x.toFixed(0)+'" y1="'+y.toFixed(0)+'" x2="'+x.toFixed(0)+'" y2="'+(y-13).toFixed(0)+'"/>'}
+let lant='';for(const t of[.28,.55]){const u=1-t;const x=u*u*296+2*u*t*200+t*t*104,y=u*u*206+2*u*t*154+t*t*206;lant+='<g class="lan"><circle cx="'+x.toFixed(0)+'" cy="'+(y-19).toFixed(0)+'" r="8" fill="#ffcf7a" opacity="'+(.15+.45*p).toFixed(2)+'"/><circle cx="'+x.toFixed(0)+'" cy="'+(y-19).toFixed(0)+'" r="2.8" fill="#ffe9b0"/></g>'}
+return '<svg class="scene" viewBox="0 0 400 340"><defs><clipPath id="ca'+id+'"><circle cx="-62" cy="215" r="166"/></clipPath><clipPath id="cb'+id+'"><circle cx="462" cy="215" r="166"/></clipPath></defs><g clip-path="url(#ca'+id+')">'+mini(S.p2.mood,'L')+'</g><g clip-path="url(#cb'+id+')">'+mini(S.you.mood,'R')+'</g><g transform="translate(348,288) scale(.8)">'+cr('y')+'</g><g transform="translate(54,288) scale(.8)">'+cr('h')+'</g><ellipse cx="200" cy="308" rx="54" ry="15" fill="#20362b"/><ellipse cx="200" cy="304" rx="54" ry="13" fill="#2a4636"/><g opacity="'+(.45+.55*p).toFixed(2)+'"><path d="M296 206 Q200 154 104 206" stroke="#77502f" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M296 206 Q200 154 104 206" stroke="#93683e" stroke-width="3" fill="none"/><path d="M296 192 Q200 140 104 192" stroke="#93683e" stroke-width="2.4" fill="none" opacity=".9"/><g stroke="#7d5738" stroke-width="2.4">'+posts+'</g>'+lant+'</g><path d="M344 118 Q200 84 56 118" stroke="'+ti.c+'" stroke-width="1" opacity=".3" fill="none"/><path class="thread" d="M344 118 Q200 84 56 118" stroke="'+ti.c+'" stroke-width="2.6" stroke-linecap="round" fill="none" stroke-dasharray="0.5 8"/>'+dreamIsles()+'</svg>'}
+const logo=s=>'<svg viewBox="0 0 512 512" width="'+s+'" height="'+s+'"><rect width="512" height="512" rx="118" fill="#070b16"/><circle cx="256" cy="256" r="128" fill="#f0c274"/><circle cx="192" cy="250" r="104" fill="#070b16"/><circle class="tw" cx="112" cy="132" r="7" fill="#f2ead8"/><circle class="tw" cx="398" cy="118" r="6" fill="#f0c274" style="animation-delay:1.1s"/><circle class="tw" cx="424" cy="252" r="5" fill="#f2ead8" style="animation-delay:.6s"/><circle class="tw" cx="98" cy="316" r="5" fill="#f0c274" style="animation-delay:1.7s"/><path class="tw" d="M196 202l6 16 16 6-16 6-6 16-6-16-16-6 16-6z" fill="#f0c274" style="animation-delay:.9s"/></svg>';
+
+function toast(i,t){const e=document.createElement('div');e.className='toast';e.innerHTML='<i>'+i+'</i><span>'+t+'</span>';$('#toasts').appendChild(e);setTimeout(()=>{e.classList.add('out');setTimeout(()=>e.remove(),400)},3400)}
+function modal(h){$('#modals').innerHTML='<div class="sheet">'+h+'</div>'}
+function cmodal(){$('#modals').innerHTML=''}
+ $('#modals').addEventListener('click',e=>{if(e.target.id==='modals')cmodal()});
+function celebrate(){const fx=$('#fx');fx.innerHTML=Array.from({length:12},()=>'<i class="shoot" style="left:'+(Math.random()*100)+'%;top:'+(Math.random()*65)+'%;animation-delay:'+(Math.random()*.6).toFixed(2)+'s"></i>').join('')+'<div class="moonburst"></div>';setTimeout(()=>fx.innerHTML='',2400);if(navigator.vibrate)navigator.vibrate(70)}
+
+function notifyMe(title,body){
+try{
+if(!('Notification' in window))return;
+if(Notification.permission==='granted'){
+const n=new Notification(title,{body:body,tag:'uni-sync'});
+setTimeout(()=>{try{n.close()}catch(e){}},20000);
+}else if(Notification.permission!=='denied'){
+Notification.requestPermission().then(p=>{if(p==='granted'){const n=new Notification(title,{body:body,tag:'uni-sync'});setTimeout(()=>{try{n.close()}catch(e){}},20000)}});
+}
+}catch(e){}}
+
+function initNet(){if(fbReady){MODE='net';return true}
+try{firebase.initializeApp({databaseURL:DB_URL});db=firebase.database();MODE='net';fbReady=true;return true}catch(e){return false}}
+function bx(n){S.bridge=Math.max(5,Math.min(100,S.bridge+n));save();if(db){try{db.ref(P('shared/bridge')).transaction(v=>Math.max(5,Math.min(100,(v||0)+n)))}catch(e){}}}
+function pushMe(x){if(!db||!mySlot)return;try{db.ref(P('users/'+mySlot)).update(Object.assign({name:NAMES[mySlot],mood:S.you.mood,fem:FEM,online:true,ls:Date.now(),act:S.you.act},x||{}))}catch(e){}}
+const mkChat=()=>{if(view!=='chat'){const b=$('#bc');if(b)b.classList.add('on')}};
+const mkWorld=()=>{toast('🌉','في حاجة جديدة في عالمنا — افتحي تب "عالمنا"')};
+function bind(){
+S.chat.forEach(m=>seen.add(m.id));
+S.dreams.forEach(d=>seen.add(d.id));
+db.ref(P('meta')).once('value').then(s=>{const v=s.val();
+if(!v){db.ref(P('meta')).set({day:S.day||Date.now(),names:{A:NAMES.A,B:NAMES.B}})}
+else if(v.day){S.day=v.day;save();rd()}}).catch(()=>{});
+let first=true,ls='';
+db.ref(P('users/'+oslot())).on('value',s=>{const v=s.val();if(!v)return;
+S.p2.name=v.name||S.p2.name;S.p2.mood=v.mood||S.p2.mood;S.p2.act=v.act||'…';S.p2.online=!!v.online&&(Date.now()-(v.ls||0)<90000);
+if(v.name&&!p2Joined&&v.ls&&v.ls>10000){p2Joined=true;toast('❤️',(S.p2.name||'التاني')+' معاكي في العالم — دلوقتي كل حاجة بينكم حقيقية');celebrate()}
+const sig=[S.p2.name,S.p2.mood,S.p2.online].join('|');
+if(first){first=false;ls=sig;rd();return}
+if(sig!==ls){const mc=ls.split('|')[1]!==S.p2.mood;ls=sig;save();
+if(mc&&view!=='partner')toast(MOODS[S.p2.mood].e,(S.p2.name||'هو')+' '+pL(S.p2.mood)+' — '+MOODS[S.p2.mood].d);rd()}});
+db.ref(P('shared/bridge')).on('value',s=>{const v=s.val();if(typeof v==='number'){S.bridge=v;save();if(view==='world')rd()}});
+db.ref(P('chat')).on('child_added',s=>{const m=s.val();if(!m)return;
+if(seen.has(m.id)){const l=S.chat.find(x=>x.id===m.id);
+if(l&&((m.audio&&!l.audio)||(m.photo&&!l.photo))){l.audio=m.audio||l.audio;l.photo=m.photo||l.photo;l.dur=m.dur||l.dur;save();rc()}
+return}
+seen.add(m.id);m.from=m.from===mySlot?'you':'him';S.chat.push(m);S.msgs++;save();
+if(m.from==='him'){mkChat();
+toast(m.kind==='voice'?'🎙️':m.kind==='photo'?'📸':'💬',(S.p2.name||'هو')+(m.kind==='voice'?' بعتلك رسالة صوتية':m.kind==='photo'?' بعتلك صورة':' كتبلك'));
+if(document.hidden)notifyMe((m.kind==='photo'?'📸 ':'💬 ')+(S.p2.name||'التاني'),(m.kind==='photo'?'بعتلك صورة':'كتبلك رسالة'))}
+rc()});
+db.ref(P('gifts/'+mySlot)).on('child_added',s=>{const g=s.val();if(!g||seen.has(g.gid))return;seen.add(g.gid);
+S.gIn.push({kind:g.kind,t:g.t||Date.now()});S.lastIn={icon:gi(g.kind),text:g.note||'هدية',t:g.t||Date.now()};bx(2);save();
+toast(gi(g.kind),(S.p2.name||'هو')+' بعتلك: "'+(g.note||'')+'" — ظهرت في عالمك');
+if(document.hidden)notifyMe(gi(g.kind)+' '+(S.p2.name||'التاني'),'بعتلك هدية');
+rd()});
+db.ref(P('dreams')).on('child_added',s=>{const d=s.val();if(!d||seen.has(d.id))return;seen.add(d.id);
+d.key=s.key;S.dreams.push(d);save();
+if(d.from!==mySlot){toast('✈️','حلم جديد فوق الجسر: "'+d.name+'"');mkWorld()}
+rd()});
+db.ref(P('dreams')).on('child_changed',s=>{const d=s.val();const i=(S.dreams||[]).findIndex(x=>x.id===d.id);
+if(i>-1){S.dreams[i].done=d.done;if(d.done&&!S.dreams[i].notified){S.dreams[i].notified=true;toast('⭐','حلمكم اتحقق: '+d.name);celebrate()}}
+save();rd()});
+db.ref(P('invite')).on('value',s=>{const v=s.val();if(!v||v.from===mySlot)return;
+if(Date.now()-(v.t||0)>60000)return;
+if(seen.has('inv'+v.key))return;seen.add('inv'+v.key);
+const bar=$('#invitebar');
+bar.innerHTML='<i>'+SYNCN[v.type].i+'</i><span>'+esc(S.p2.name||'التاني')+' بدأ لحظة تزامن! انضمّي</span><button class="btn p" data-a="invjoin" data-type="'+v.type+'" data-key="'+v.key+'">انضم 🤍</button><button class="x" data-a="invno">×</button>';
+requestAnimationFrame(()=>bar.classList.add('in'));
+notifyMe(SYNCN[v.type].i+' لحظة تزامن!',(S.p2.name||'التاني')+' بيستناك تنضم — افتحي عالمنا');
+if(navigator.vibrate)navigator.vibrate([80,60,80]);
+clearTimeout(bar._t);bar._t=setTimeout(()=>{bar.classList.remove('in');bar.innerHTML=''},60000)});
+db.ref('.info/connected').on('value',s=>{netOn=!!s.val();rh();
+if(netOn){const me=db.ref(P('users/'+mySlot));me.onDisconnect().update({online:false,ls:Date.now()}).then(()=>pushMe()).catch(()=>{})}})}
+
+function headHTML(){const st=MODE==='net'?(p2Joined&&netOn?'<span class="chip" style="color:#a8d8a0">❤️ مع بعض</span>':netOn?'<span class="chip" style="color:#f0c274">⏳ مستنياه…</span>':'<span class="chip">📡…</span>'):'<span class="chip">تجريبي 🧪</span>';
+return '<div class="brand">'+logo(34)+'<div><b class="en">OUR UNIVERSE</b><small>اليوم '+dayN()+' مع بعض 🤍</small></div></div>'+st+'<button class="chip" data-go="partner"><span class="dot'+(S.p2.online?' on':'')+'"></span>'+esc(S.p2.name||'…')+'</button>'}
+const rh=()=>{$('#top').innerHTML=headHTML()};
+function tabsUp(){document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.go===view))}
+function renderHome(){
+const pair=MODE==='net'
+?'<div class="card" style="border-color:#8fce7a55"><b>🔗 عالمكم متوصل'+(netOn?' ✅':' — بانتظار النت…')+'</b><p class="hint">'+(p2Joined?'كل حاجة بينكم حقيقية: رسايل، صوتيات، صور، مودات، تزامنات، وأحلام بتتحول لجزر.':'مستنيّاه يفتح اللينق ويختار اسمه — أول ما يدخل هتعرفي فورًا.')+'</p><button class="btn g" style="margin-top:8px" data-a="switch">🔄 تبديل المستخدم على الموبايل ده</button></div>'
+:'<div class="card" style="border-color:#5a4a1f;background:#1a1608"><h3>📡 مش قادر يوصل لعالمكم</h3><p class="hint">اتأكدي من النت، وإن Rules في Firebase متغيرة.</p></div>';
+const on=S.p2.online?'<div class="card" style="display:flex;gap:11px;align-items:center"><span class="dot on"></span><div><b style="font-size:.86rem">🧍 '+esc(S.p2.name)+' موجود في عالمك</b><div class="hint" style="font-size:.74rem">'+esc(S.p2.act)+' — من غير ما يتكلم</div></div></div>':'';
+const li=S.lastIn?'<div class="card"><b style="font-size:.84rem">آخر حاجة وصلتك:</b><p class="hint" style="color:var(--ink);font-size:.84rem;margin-top:3px">'+S.lastIn.icon+' "'+esc(S.lastIn.text)+'" '+ago(S.lastIn.t)+'</p></div>':'';
+return '<section><div class="scene-card">'+scene('you')+'</div>'+pair+on+'<div class="card"><h3>إحساسك دلوقتي؟</h3><p class="hint">اختاري من غير كلمة — وعالمك يتحول '+w('قدامه','قدامها')+'.</p><div class="moods" style="margin-top:10px">'+Object.keys(MOODS).map(k=>'<button class="mood'+(S.you.mood===k?' on':'')+'" data-a="mood" data-k="'+k+'"><i>'+MOODS[k].e+'</i><span>'+MOODS[k][FEM?'l':'m']+'</span></button>').join('')+'</div></div>'+li+'</section>'}
+function renderPartner(){const m=MOODS[S.p2.mood];
+return '<section><div class="scene-card">'+scene('partner')+'</div><div class="card" style="display:flex;gap:11px;align-items:center"><span class="dot'+(S.p2.online?' on':'')+'"></span><div>'+(S.p2.online?'<b style="font-size:.86rem">🧍 موجود دلوقتي</b><div class="hint" style="font-size:.74rem">'+esc(S.p2.act)+' — من غير Chat</div>':'<b style="font-size:.86rem">مش موجود دلوقتي</b><div class="hint" style="font-size:.74rem">ابعتيله حاجة صغيرة 🌸</div>')+'</div></div><div class="card"><h3>عالمه دلوقتي</h3><p class="hint" style="color:var(--ink);font-size:.86rem">'+m.d+'</p><p style="margin-top:8px;font-size:.84rem;color:var(--gold)">'+m.e+' '+pL(S.p2.mood)+'</p></div><div class="card"><h3>ابعتيله حاجة صغيرة</h3><p class="hint">حاجة تظهر جوه عالمه.</p><div class="tinies" style="margin-top:10px">'+TINY.map(t=>'<button class="tiny" data-a="tiny" data-k="'+t.k+'"><i>'+t.i+'</i><span>'+w(t.me,t.him)+'</span></button>').join('')+'</div>'+(S.lastOut?'<p class="hint" style="margin-top:10px">آخر حاجة وصلته: '+S.lastOut.icon+' "'+esc(S.lastOut.text)+'" '+ago(S.lastOut.t)+'</p>':'')+'</div></section>'}
+function renderWorld(){const ti=threadInfo();const lv=S.bridge>=70?'الجسر نوره قوي الليلة ✨':S.bridge>=40?'الجسر دافي ومتوهّج':'الجسر محتاج لمسة… ابعتيله حاجة 🌸';
+const dreams=(S.dreams&&S.dreams.length)?S.dreams.map((d,i)=>'<div class="dream"><span style="font-size:1.4rem">'+(d.done?'⭐':'🪐')+'</span><div><b>'+esc(d.name)+(d.done?' — تحقق ⭐':'')+'</b><small>"'+esc((d.quote||'').slice(0,40))+'"</small></div>'+(d.done?'':'<button class="btn g go" data-a="ddone" data-i="'+i+'">حققناه 🎉</button>')+'</div>').join(''):'<p class="hint">لسه مفيش أحلام… من الحديث، اضغطوا ✈️ جنب أي رسالة أو صورة وخلّوها حلم يعيش فوق الجسر.</p>';
+return '<section><div class="scene-card">'+scene2()+'</div><div style="display:flex;justify-content:space-between;color:var(--mu);font-size:.72rem;margin:-4px 4px 10px"><span>'+esc(S.you.name||'أنا')+' · '+MOODS[S.you.mood].e+' '+mL(S.you.mood)+'</span><span>'+MOODS[S.p2.mood].e+' '+pL(S.p2.mood)+' '+esc(S.p2.name)+'</span></div><div class="card"><div style="display:flex;justify-content:space-between;margin-bottom:6px"><b style="font-size:.88rem">🌉 طاقة الجسر</b><span style="color:var(--gold);font-size:.74rem">'+S.bridge+'%</span></div><div class="bar"><i style="width:'+S.bridge+'%"></i></div><p class="hint" style="margin-top:8px">'+lv+' — كل هدية ورسالة وتزامن وحلم بيكبّر نوره.</p></div><div class="card threadbox"><span class="sw" style="background:'+ti.c+';color:'+ti.c+'"></span><div><b style="font-size:.84rem">🧵 الخيط غير المرئي</b><p class="hint">'+ti.t+'</p></div></div><div class="card"><h3>✨ لحظات التزامن</h3><p class="hint">حاجات بتعملوها مع بعض في نفس اللحظة.</p><button class="btn p w" style="margin-top:10px" data-a="sync">✨ ابدئي لحظة تزامن</button><p class="hint" style="margin-top:8px">لحد دلوقتي حققتوا <b style="color:var(--gold)">'+(S.syncs||0)+'</b> تزامن 🤍</p></div><div class="card"><h3>✈️ أحلامكم</h3>'+dreams+'</div></section>'}
+function msgHTML(m){const t='<time>'+fmt(m.t)+'</time>';
+if(m.kind==='photo')return '<div class="msg '+m.from+'"><div class="bub photo">'+(m.photo?'<img src="'+m.photo+'" alt="صورة" loading="lazy">':'<small>📸 صورة</small>')+'</div>'+t+(m.from==='you'?'<div class="tools"><button data-a="dsave" data-id="'+m.id+'">✈️ كحلم</button></div>':'')+'</div>';
+if(m.kind==='voice')return '<div class="msg '+m.from+'"><div class="bub voice">'+(m.audio?'<audio controls preload="metadata" src="'+m.audio+'"></audio>':'<small>🎙️ رسالة صوتية</small>')+'<small>🎙️ رسالة صوتية'+(m.dur?' · '+Math.max(1,Math.round(m.dur))+' ث':'')+'</small></div>'+t+(m.from==='you'?'<div class="tools"><button data-a="dsave" data-id="'+m.id+'">✈️ كحلم</button></div>':'')+'</div>';
+if(m.kind==='nw'){const n=NW.find(x=>x.k===m.nw);return '<div class="msg '+m.from+'"><div class="nwmsg"><i>'+n.i+'</i>'+esc(m.text)+'</div>'+t+'</div>'}
+const tg=m.tag?'<small style="display:block;font-size:.68rem;color:var(--gold);margin-top:4px;border-top:1px dashed #f0c27433;padding-top:3px">'+TAGS[m.tag].i+' '+TAGS[m.tag].l+'</small>':'';
+return '<div class="msg '+m.from+'"><div class="bub">'+esc(m.text)+tg+'</div>'+t+(m.from==='you'?'<div class="tools"><button data-a="dsave" data-id="'+m.id+'">✈️ كحلم</button></div>':'')+'</div>'}
+const typHTML='<div class="msg him typing"><div class="bub" style="display:flex;gap:5px"><i class="td"></i><i class="td" style="animation-delay:.15s"></i><i class="td" style="animation-delay:.3s"></i></div></div>';
+function chatHTML(){
+const pbtn='<button class="mic" data-a="photo">📷</button>';
+const mic=(typeof MediaRecorder!=='undefined'&&navigator.mediaDevices)?'<button class="mic'+(rec?' rec':'')+'" data-a="voice">'+(rec?'⏹':'🎙️')+'</button>':'';
+const row=rec?'<div class="inrow">'+mic+'<div class="recbar">جاري التسجيل… <b id="rt">0 ث</b> — اضغطي ⏹ للإرسال</div></div>'
+:'<div class="inrow">'+pbtn+mic+'<input id="ci" placeholder="'+w('اكتبي له…','اكتب لها…')+'" value="'+esc(draft)+'" autocomplete="off"><button class="sendb" data-a="send"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H5m0 0l6-6m-6 6l6 6"/></svg></button></div>';
+return '<div class="cs" id="cl">'+(S.chat.map(msgHTML).join('')||'<p class="hint" style="margin:auto;text-align:center">الكلام هنا بيبقى بينكم بجد — والرسايل والصور المهمة بتتحول لأحلام فوق الجسر 🤍</p>')+'</div><div class="comp"><div class="nwrow">'+NW.map(n=>'<button class="nwb" data-a="nw" data-k="'+n.k+'"><i>'+n.i+'</i>'+n.l+'</button>').join('')+'</div><div class="tags"><span class="hint" style="font-size:.66rem">الإحساس وراها:</span>'+Object.keys(TAGS).map(k=>'<button class="tg'+(tag===k?' on':'')+'" data-a="tag" data-k="'+k+'">'+TAGS[k].i+' '+TAGS[k].l+'</button>').join('')+'</div>'+row+'</div>'}
+function rc(){if(view!=='chat')return;const m=$('#main');m.className='chat';
+const a=document.activeElement,wt=a&&a.id==='ci',pos=wt?a.selectionStart:null;
+m.innerHTML=chatHTML();const ci=$('#ci');
+if(ci){ci.addEventListener('keydown',e=>{if(e.key==='Enter')sendText()});
+if(wt){ci.focus();try{ci.setSelectionRange(pos,pos)}catch(e){}}}
+const cl=$('#cl');if(cl)cl.scrollTop=cl.scrollHeight;
+const b=$('#bc');if(b)b.classList.remove('on')}
+function render(){rh();tabsUp();const m=$('#main');m.className='';
+if(view==='chat')rc();
+else m.innerHTML=({home:renderHome,partner:renderPartner,world:renderWorld})[view]()}
+function rd(){if(view==='chat'){rh();rc()}else render()}
+
+function setMood(k){if(S.you.mood===k)return;S.you.mood=k;bx(2);toast(MOODS[k].e,'عالمك اتغيّر: '+MOODS[k].d);save();pushMe({mood:k});render()}
+function send(m){m.id='m'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);m.t=Date.now();
+seen.add(m.id);S.chat.push(m);S.msgs++;save();rc();
+if(S.msgs===1)toast('💬','أول رسالة في عالمكم 🤍');
+try{db.ref(P('chat')).push({id:m.id,from:mySlot,text:m.text||'',kind:m.kind||null,nw:m.nw||null,tag:m.tag||null,audio:m.audio||null,photo:m.photo||null,dur:m.dur||null,t:m.t}).catch(()=>toast('⚠️','الرسالة مبعتتش — شوفي النت أو Rules'))}catch(e){toast('⚠️','مش متصلة بالنت')}}
+function sendText(){const ci=$('#ci');const t=(ci?ci.value:draft).trim();if(!t)return;draft='';if(ci)ci.value='';
+send({from:'you',text:t,tag:tag});tag=null;
+if(/❤️|بحب/.test(t)){S.gOut.push({kind:'heart',t:Date.now()});save();try{db.ref(P('gifts/'+oslot())).push({gid:'g'+Date.now(),kind:'heart',t:Date.now(),note:'❤️'})}catch(e){}}}
+function sendNW(k){const n=NW.find(x=>x.k===k);if(!n)return;
+send({from:'you',kind:'nw',nw:k,text:w(n.s,n.sm||n.s)});bx(3);toast(n.i,'وصلت من غير ولا كلمة')}
+function sendTiny(k){const t=TINY.find(x=>x.k===k);if(!t)return;
+const mine=w(t.me,t.him),his=w(t.him,t.me);
+const kind=k==='sun'?'sunpop':k==='letter'?'letter':k==='song'?'notes':k;
+S.gOut.push({kind,t:Date.now()});S.lastOut={icon:t.i,text:mine,t:Date.now()};S.tiny++;bx(4);
+toast(t.i,'وصلت '+w('لعالمه','لعالمها')+'… "'+mine+'"');save();render();
+try{db.ref(P('gifts/'+oslot())).push({gid:'g'+Date.now(),kind,t:Date.now(),note:his})}catch(e){}}
+
+/* ═══ الصور 📷 ═══ */
+function openPhoto(){
+modal('<h3>📷 ابعتيله صورة</h3><p class="hint">الصور بتوصل فورًا — وبتتحول لحلم لو حبيتوا ✈️</p><button class="btn p w" style="margin-bottom:9px" data-a="pFromCam">📷 من الكاميرا</button><button class="btn g w" data-a="pFromGal">🖼️ من الصور</button><button class="back" data-a="close">إلغاء</button>')}
+function pickPhoto(src){
+if(photoPick){try{document.body.removeChild(photoPick)}catch(e){}photoPick=null}
+const inp=document.createElement('input');
+inp.type='file';inp.accept='image/*';
+if(src==='cam')inp.setAttribute('capture','environment');
+inp.style.display='none';document.body.appendChild(inp);
+inp.addEventListener('change',()=>{
+const f=inp.files&&inp.files[0];
+try{document.body.removeChild(inp)}catch(e){}
+photoPick=null;
+if(!f)return;
+if(f.size>9000000)return toast('⚠️','الصورة كبيرة جدًا — اختاري أصغر');
+toast('⏳','جاري تجهيز الصورة…');
+compressImage(f,function(dataURL){
+if(!dataURL)return;
+if(dataURL.length>900000)return toast('⚠️','الصورة لسه كبيرة — جربي واحدة أصغر');
+send({from:'you',kind:'photo',photo:dataURL});
+toast('📸','الصورة اتبعتت');
+});
+});
+photoPick=inp;
+inp.click()}
+function compressImage(file,cb){
+try{
+const fr=new FileReader();
+fr.onload=function(){
+const img=new Image();
+img.onload=function(){
+try{
+let iw=img.width,ih=img.height;
+const MAX=500;
+if(iw>MAX||ih>MAX){if(iw>ih){ih=Math.round(ih*MAX/iw);iw=MAX}else{iw=Math.round(iw*MAX/ih);ih=MAX}}
+const cnv=document.createElement('canvas');
+cnv.width=iw;cnv.height=ih;
+cnv.getContext('2d').drawImage(img,0,0,iw,ih);
+cb(cnv.toDataURL('image/jpeg',.7));
+}catch(e){cb(null)}};
+img.onerror=function(){toast('⚠️','مش قادر يقرأ الصورة');cb(null)};
+img.src=fr.result};
+fr.onerror=function(){toast('⚠️','مش قادر يقرأ الصورة');cb(null)};
+fr.readAsDataURL(file);
+}catch(e){cb(null)}}
+
+/* ═══ الصوت 🎙️ ═══ */
+async function voice(){
+if(!(typeof MediaRecorder!=='undefined'&&navigator.mediaDevices))return toast('🎙️','المتصفح مش بيدعم التسجيل — جربي كروم');
+if(rec){clearInterval(rec.tm);const s=rec;rec=null;rc();try{s.r.stop()}catch(e){}return}
+let st;try{st=await navigator.mediaDevices.getUserMedia({audio:true})}catch(e){return toast('🎙️','اسمحي للميكروفون وجرّبي تاني')}
+let mt='';try{for(const t of['audio/mp4','audio/webm;codecs=opus','audio/webm'])if(MediaRecorder.isTypeSupported(t)){mt=t;break}}catch(e){}
+let r;try{r=new MediaRecorder(st,mt?{mimeType:mt}:undefined)}catch(e){st.getTracks().forEach(t=>t.stop());return toast('🎙️','مش قادر يبدأ التسجيل')}
+const ch=[];r.ondataavailable=e=>{if(e.data&&e.data.size)ch.push(e.data)};
+const s={r,t0:Date.now(),tm:null};rec=s;
+r.onstop=()=>{st.getTracks().forEach(t=>t.stop());const d=(Date.now()-s.t0)/1000;
+if(d<.8||!ch.length)return toast('🎙️','التسجيل قصير أوي');
+const fr=new FileReader();fr.onload=()=>{const u=fr.result;
+if(u.length>1400000)return toast('⚠️','الرسالة طويلة — أقصى حد دقيقة');
+send({from:'you',kind:'voice',audio:u,dur:d})};
+fr.readAsDataURL(new Blob(ch,{type:r.mimeType||'audio/webm'}))};
+r.start();s.tm=setInterval(()=>{const e=Math.floor((Date.now()-s.t0)/1000);
+if(e>=60){if(rec===s){rec=null;rc()}try{r.stop()}catch(x){}}
+else{const el=$('#rt');if(el)el.textContent=e+' ث'}},400);
+rc()}
+
+/* ═══ الأحلام ✈️ ═══ */
+function openDream(id){
+const m=S.chat.find(x=>x.id===id);if(!m)return;
+const quote=m.text||(m.kind==='photo'?'📸 صورة':m.kind==='voice'?'🎙️ رسالة صوتية':'');
+modal('<h3>✈️ احفظوا الحلم فوق الجسر</h3><p class="hint">"'+esc(quote.slice(0,60))+((quote.length>60)?'…':'')+'"</p><label>اسم الحلم (زي: إيطاليا ✈️ أو شقة مع بعض)</label><input id="drname" maxlength="24" placeholder="اسم الحلم…"><div class="err"></div><button class="btn p w" data-a="dcreate" data-id="'+id+'">خلّوه يطير فوق الجسر ✈️</button>')}
+function createDream(id){
+const m=S.chat.find(x=>x.id===id);const name=$('#drname').value.trim();
+if(!m||!name)return;
+const e={id:'d'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),name:name,quote:(m.text||(m.kind==='photo'?'📸 صورة':'🎙️ صوت')).slice(0,60),done:false,t:Date.now(),from:mySlot};
+seen.add(e.id);S.dreams.push(e);save();cmodal();
+toast('✈️','"'+name+'" بقت جزيرة فوق الجسر');
+mkWorld();bx(5);rd();
+try{db.ref(P('dreams')).push(e)}catch(err){}}
+function dreamDone(i){
+const d=S.dreams[i];if(!d||d.done)return;
+d.done=true;d.notified=true;save();rd();
+toast('⭐','حلمكم اتحقق: '+d.name);celebrate();bx(10);
+try{if(d.key)db.ref(P('dreams/'+d.key)).update({done:true})}catch(e){}}
+
+/* ═══ لحظات التزامن ✨ ═══ */
+function openSync(){
+if(!p2Joined){toast('⏳','مستنيّاه يدخل الأول — لحظة التزامن محتاجة الاتنين');return}
+modal('<h3 style="text-align:center">✨ لحظة تزامن</h3><p class="hint" style="text-align:center">حاجة بتعملوها مع بعض في نفس اللحظة — وهو هيوصله إشعار فورًا.</p>'
++Object.keys(SYNCN).map(k=>'<button class="syncbtn" data-a="syncgo" data-t="'+k+'"><i>'+SYNCN[k].i+'</i><div><b>'+SYNCN[k].t+'</b><small>'+SYNCN[k].d+'</small></div></button>').join('')
++'<button class="back" data-a="close">إلغاء</button>')}
+function syncStart(type){
+if(!db)return;
+const key='sk'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+try{db.ref(P('invite')).set({type:type,from:mySlot,key:key,t:Date.now()});
+openChallenge(type,key)}catch(e){toast('⚠️','مش متصلة بالنت')}}
+function openChallenge(type,key){
+const n=SYNCN[type];
+let body='<div class="syncbox"><span class="big">'+n.i+'</span><h3>'+n.t+'</h3><p class="hint">'+n.d+'</p><div class="sync-status"><span id="you-st">'+w('أنتِ…','أنت…')+'</span><span id="him-st">'+esc(S.p2.name||'التاني')+'…</span></div>';
+if(type==='moon'){
+body+='<button class="btn p" data-a="sready" data-key="'+key+'">'+w('أنا جاهزة','أنا جاهز')+'</button></div>';
+}else if(type==='color'){
+body+='<div class="colors">'+COLORS.map(c=>'<button class="csw" style="background:'+c+'" data-a="scolor" data-c="'+c+'" data-key="'+key+'"></button>').join('')+'</div><p class="hint" id="color-st">&nbsp;</p></div>';
+}else{
+body+='<div class="touchpad" id="tp"><span>اضغط واستمر</span></div></div>';
+}
+modal(body);
+if(type==='touch')netTouch(key);
+watchChallenge(type,key)}
+function watchChallenge(type,key){
+db.ref(P('sync/'+key)).on('value',s=>{
+const v=s.val()||{};
+if(finished.has(key)){return}
+if(type==='moon'){
+if(v[mySlot]!=null){const el=$('#you-st');if(el){el.textContent=w('أنتِ جاهزة ✓','أنت جاهز ✓');el.classList.add('ok')}}
+if(v[oslot()]!=null){const el=$('#him-st');if(el){el.textContent=(S.p2.name||'التاني')+' جاهز ✓';el.classList.add('ok')}}
+if(v.A!=null&&v.B!=null){
+const diff=Math.abs((v.A||0)-(v.B||0));
+const perfect=diff<3000;
+finishChallenge(key,'🌟',perfect,'حصل التزامن!',perfect?'في نفس اللحظة بالظبط… توقيع قلب واحد ❤️':'كان بينكم '+(diff/1000).toFixed(1)+' ثانية — وعالمنا كبر برضو 🤍','القمر 🌙',perfect)}}
+if(type==='color'&&v.A&&v.B){
+const same=v.A===v.B;
+if(same){try{db.ref(P('shared/rainbow')).set(Date.now()+30000)}catch(e){}}
+finishChallenge(key,same?'🌈':'🤍',same,'نفس اللون!',same?'قوس قزح لمع على الجسر بينكم 🌈':'قريبين أكتر مما تتخيلوا 🤍','اللون: '+CNAMES[v.A],same)}
+if(type==='touch'){
+const A=v.A||{},B=v.B||{};
+if(A.s==null||B.s==null)return;
+const end=Math.min(A.e||Date.now(),B.e||Date.now());
+const ov=end-Math.max(A.s,B.s);
+if(ov>=800){finishChallenge(key,'🤍',true,'لمستوا نفس اللحظة!','المساتكم مشيت على الجسر في نفس الثانية ❤️','اللمسة المتزامنة',true)}
+else if(A.e!=null&&B.e!=null&&!finished.has(key)){
+finished.add(key);
+modal('<div class="syncbox"><span class="big">🤍</span><h3>قربتوا!</h3><p class="hint">جربوا تاني… المرة الجاية هتلمسوا نفس اللحظة</p><button class="btn p" data-a="close">تمام</button></div>');
+try{db.ref(P('invite')).remove()}catch(e){}}}
+})}
+function netTouch(key){
+const tp=$('#tp');if(!tp)return;
+let hold=false;
+tp.addEventListener('pointerdown',e=>{e.preventDefault();hold=true;tp.classList.add('hold');
+const el=$('#you-st');if(el){el.textContent=w('أنتِ ضاغطة ✓','أنت ضاغط ✓');el.classList.add('ok')}
+try{db.ref(P('sync/'+key+'/'+mySlot+'/s')).set(SVTS());db.ref(P('sync/'+key+'/'+mySlot+'/e')).remove()}catch(e){}});
+const up=()=>{if(!hold)return;hold=false;tp.classList.remove('hold');
+const el=$('#you-st');if(el){el.textContent=w('أنتِ سايبة','أنت سايب');el.classList.remove('ok')}
+try{db.ref(P('sync/'+key+'/'+mySlot+'/e')).set(SVTS())}catch(e){}};
+tp.addEventListener('pointerup',up);tp.addEventListener('pointerleave',up);tp.addEventListener('pointercancel',up)}
+function finishChallenge(key,icon,perfect,heading,sub,detail,bigReward){
+if(finished.has(key))return;finished.add(key);
+modal('<div class="syncbox"><span class="big">'+icon+'</span><h3>'+heading+'</h3><p style="color:var(--gold);margin:8px 0">'+sub+'</p><p class="hint">الجسر نوّر واتمدد — وعالمنا كبر 💛</p><button class="btn p" data-a="close">جميل 🤍</button></div>');
+celebrate();
+S.syncs=(S.syncs||0)+1;save();rd();
+try{db.ref(P('sync/'+key+'/done')).transaction(cur=>cur===true?undefined:true).then(r=>{
+if(r.committed){bx(perfect?10:7);toast('🌉','الجسر كبر — عالمنا بيكبر بكم')}}).catch(()=>{});
+db.ref(P('invite')).remove()}catch(e){}}
+
+/* ═══ شاشة "إنت مين؟" ═══ */
+function whoAreYou(){const o=$('#ob');o.hidden=false;
+o.innerHTML='<div class="obw">'+logo(100)+'<h1 class="en">OUR UNIVERSE</h1><p>عالمكم جاهز 🌌<br>إنت مين على الموبايل ده؟</p><div class="picknames"><button class="pname" data-a="mk" data-slot="A">🌸 '+esc(NAMES.A)+'</button><button class="pname" data-a="mk" data-slot="B">'+esc(NAMES.B)+'</button></div><p class="hint">كل واحد يختار اسمه على موبايله — مرة واحدة</p></div>'}
+function mk(slot){localStorage.setItem('pslot',slot);toast('🌌','أهلاً '+NAMES[slot]+' — ثواني وندخل…');setTimeout(()=>location.reload(),600)}
+function rulesScreen(){const o=$('#ob');o.hidden=false;
+o.innerHTML='<div class="obw">'+logo(90)+'<h1 class="en">OUR UNIVERSE</h1><p>خطوة واحدة فاضلة 👇<br>افتحي <b style="color:var(--ink)">console.firebase.google.com</b> → مشروعك → <b style="color:var(--ink)">Realtime Database</b> → تب <b style="color:var(--ink)">Rules</b> — امسحي والصقي ده واعملي <b style="color:var(--ink)">Publish</b>:</p><div class="rulesbox">{ "rules": { "unis": { "$code": { ".read": true, ".write": true } } } }</div><button class="btn p w" data-a="retry">خلصت — جرّب تاني ✅</button></div>'}
+function enter(){$('#ob').hidden=true;$('#app').hidden=false;
+S.you.name=NAMES[mySlot];S.p2.name=NAMES[oslot()];
+S.you.act=S.you.act||pick(FEM?ACTF:ACTM);
+bind();pushMe();
+document.addEventListener('click',function once(){document.removeEventListener('click',once);try{if('Notification' in window&&Notification.permission==='default'){Notification.requestPermission().then(p=>{notifOK=(p==='granted');if(p==='granted')toast('🔔','تمام — هتيجيلك إشعارات التزامن والرسايل')})}}catch(e){}},{once:true});
+render()}
+
+document.addEventListener('input',e=>{if(e.target.id==='ci')draft=e.target.value});
+document.addEventListener('click',e=>{
+const g=e.target.closest('[data-go]');if(g){view=g.dataset.go;render();return}
+const t=e.target.closest('[data-a]');if(!t)return;const d=t.dataset;
+switch(d.a){
+case 'mood':setMood(d.k);break;
+case 'tiny':sendTiny(d.k);break;
+case 'nw':sendNW(d.k);break;
+case 'send':sendText();break;
+case 'voice':voice();break;
+case 'photo':openPhoto();break;
+case 'pFromCam':cmodal();pickPhoto('cam');break;
+case 'pFromGal':cmodal();pickPhoto('gal');break;
+case 'tag':tag=tag===d.k?null:d.k;document.querySelectorAll('.tg').forEach(b=>b.classList.toggle('on',b.dataset.k===tag));break;
+case 'dsave':openDream(d.id);break;
+case 'dcreate':createDream(d.id);break;
+case 'ddone':dreamDone(+d.i);break;
+case 'sync':openSync();break;
+case 'syncgo':syncStart(d.t);break;
+case 'sready':try{db.ref(P('sync/'+d.key+'/'+mySlot)).set(SVTS())}catch(err){}break;
+case 'scolor':try{db.ref(P('sync/'+d.key+'/'+mySlot)).set(d.c);document.querySelectorAll('.csw').forEach(b=>b.classList.toggle('sel',b.dataset.c===d.c));const st=$('#color-st');if(st)st.textContent='اتسجل اختيارك… مستنين اختياره 🤍'}catch(err){}break;
+case 'invjoin':$('#invitebar').classList.remove('in');$('#invitebar').innerHTML='';openChallenge(d.type,d.key);break;
+case 'invno':$('#invitebar').classList.remove('in');$('#invitebar').innerHTML='';break;
+case 'close':cmodal();break;
+case 'mk':mk(d.slot);break;
+case 'switch':localStorage.removeItem('pslot');location.reload();break;
+case 'retry':location.reload();break}});
+
+function buildPWA(){try{
+const c=document.createElement('canvas');c.width=c.height=512;const x=c.getContext('2d');
+x.beginPath();x.moveTo(118,0);x.arcTo(512,0,512,512,118);x.arcTo(512,512,0,512,118);x.arcTo(0,512,0,0,118);x.arcTo(0,0,512,0,118);x.closePath();x.fillStyle='#070b16';x.fill();
+x.fillStyle='#f0c274';x.beginPath();x.arc(256,256,128,0,7);x.fill();
+x.fillStyle='#070b16';x.beginPath();x.arc(192,250,104,0,7);x.fill();
+x.fillStyle='#f2ead8';[[112,132,7],[424,252,5],[398,118,6],[98,316,5]].forEach(p=>{x.beginPath();x.arc(p[0],p[1],p[2],0,7);x.fill()});
+x.fillStyle='#f0c274';x.beginPath();x.moveTo(196,202);x.lineTo(202,218);x.lineTo(218,224);x.lineTo(202,230);x.lineTo(196,246);x.lineTo(190,230);x.lineTo(174,224);x.lineTo(190,218);x.closePath();x.fill();
+const ic=c.toDataURL('image/png');
+const man={name:'OUR UNIVERSE — عالمنا',short_name:'OUR UNIVERSE',start_url:location.href,display:'standalone',background_color:'#070b16',theme_color:'#070b16',icons:[{src:ic,sizes:'512x512',type:'image/png',purpose:'any'},{src:ic,sizes:'512x512',type:'image/png',purpose:'maskable'}]};
+ $('#mf').href=URL.createObjectURL(new Blob([JSON.stringify(man)],{type:'application/manifest+json'}))}catch(e){}}
+
+buildPWA();
+async function boot(){
+if(typeof firebase!=='undefined'&&initNet()){
+try{await db.ref(P('meta')).once('value')}catch(e){return rulesScreen()}
+const s=localStorage.getItem('pslot');
+if(s==='A'||s==='B'){mySlot=s;FEM=(s==='A');return enter()}
+return whoAreYou()}
+MODE='demo';
+const o=$('#ob');o.hidden=false;
+o.innerHTML='<div class="obw">'+logo(100)+'<h1 class="en">OUR UNIVERSE</h1><p>مش قادر يوصل لعالمكم — اتأكدي من النت وافتحي تاني.</p></div>'}
+setTimeout(()=>{const sp=$('#splash');sp.classList.add('bye');setTimeout(()=>sp.remove(),650);boot()},1800);
+setInterval(()=>{if(MODE==='net'&&netOn)pushMe({ls:Date.now()})},30000);
+window.__ok=true;
+</script>
+</body>
+</html>
